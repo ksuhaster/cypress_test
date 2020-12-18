@@ -1,5 +1,5 @@
-describe('Test Python visit', () => {
-  it('find python button', () => {
+describe('Category check', () => {
+  it('checks Python category', () => {
     cy.visit('/');
 
     const passWords = 'python|machine learning|data science'
