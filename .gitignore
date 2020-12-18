@@ -7,12 +7,17 @@ tmp
 .projects
 *.orig
 
-videos
 out.js
 examples/*/cypress/logs
 examples/*/cypress/downloads
 snapshots.js
 .nyc_output
 coverage
+
+# custom
+videos
 dist
 playground
+fixtures
+plugins
+task.md
