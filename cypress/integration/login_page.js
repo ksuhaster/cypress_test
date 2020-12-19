@@ -18,13 +18,13 @@ describe('Login page tests', () => {
       .should('have.attr', 'href', '/signup')
 
     cy.contains('Забули пароль?')
-      .should('have.attr', 'href', '/remind?email=&lang=uk')
+      .should('have.attr', 'href', '\/remind\?email=&.+')
   })
 
   it('checks login', () => {
-    cy.get('#email').type('vl.hutsal@gmail.com')
-    cy.get('#password').type('easytobreakinparol{enter}')
-    cy.url().should('eq', Cypress.env('InboxPage'))
+    cy.get('#email').type('vl.hutsal@gmail.com');
+    cy.get('#password').type('easytobreakinparol{enter}');
+    cy.url().should('eq', Cypress.env('InboxPage'));
   })
 
 })
