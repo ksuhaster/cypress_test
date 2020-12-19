@@ -1,4 +1,4 @@
-describe('Inbox entry tests', () => {
+describe('Test first inbox entry', () => {
   before(() => {
     cy.login();
   })
@@ -34,7 +34,7 @@ describe('Inbox entry tests', () => {
 })
 
 
-describe('Inbox entry button dropdown test', () => {
+describe('Test first inbox entry dropdown menu', () => {
   beforeEach(() => {
     cy.getFirstMsg()
       .as('firstMsg').within(() => {

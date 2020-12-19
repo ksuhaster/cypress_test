@@ -21,7 +21,7 @@ describe('Login page tests', () => {
       .should('have.attr', 'href', '\/remind\?email=&.+')
   })
 
-  it('checks login', () => {
+  it('checks login and redirect to /inbox/', () => {
     cy.get('#email').type('vl.hutsal@gmail.com');
     cy.get('#password').type('easytobreakinparol{enter}');
     cy.url().should('eq', Cypress.env('InboxPage'));
