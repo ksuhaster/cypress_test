@@ -8,5 +8,7 @@ inbox:
 - how to check if picture exists in a better way?
 
 navbar:
-- logined
-- unlogined
+- DRY!!
+- authorized user
+- unathorized user
+- fullscreen/collapsed
