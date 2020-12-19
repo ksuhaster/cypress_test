@@ -1,12 +1,17 @@
 {
     "video": false,
-    "baseUrl": "https://djinni.co/jobs2/",
+    "baseUrl": "https://djinni.co/",
     "viewportWidth": 1920,
     "viewportHeight": 1080,
     "watchForFileChanges": false,
+
     "env": {
-        "PythonDir": "https://djinni.co/jobs2/?category=python&",
-        "LoginPage": "https://djinni.co/login",
-        "InboxPage": "https://djinni.co/my/inbox/"
+        "DashboardPage":    "https://djinni.co/my/dashboard/",
+        "LoginPage":        "https://djinni.co/login",
+        "InboxPage":        "https://djinni.co/my/inbox/",
+        "JobsPage":        "https://djinni.co/jobs/",
+        "UserProfilePage":  "https://djinni.co/my/profile/",
+
+        "PythonDir":        "https://djinni.co/jobs2/?category=python&"
     }
 }
