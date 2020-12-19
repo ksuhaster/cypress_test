@@ -42,4 +42,3 @@ describe('Category check', () => {
       })
   })
 })
-
