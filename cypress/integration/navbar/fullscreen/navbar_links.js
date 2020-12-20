@@ -31,7 +31,6 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
     cy.getCookie('testsCounter').then(prevCounter => {
       const count = parseInt(prevCounter.value) + 1;
       cy.setCookie('testsCounter', `${count}`);
-      console.log(count);
     })
   })
 
@@ -40,7 +39,6 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
     cy.get('.navbar-brand')
       .invoke('attr', 'href')
       .then(url => {
-        console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
           cy.validateUrlResponse(url, 302, cookie.value)
         });
@@ -51,7 +49,6 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
     cy.get('.collapse > :nth-child(1) > :nth-child(1) > a')
       .invoke('attr', 'href')
       .then(url => {
-        console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
           cy.validateUrlResponse(url, 200, cookie.value)
         });
@@ -62,7 +59,6 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
     cy.get(':nth-child(1) > :nth-child(2) > a')
       .invoke('attr', 'href')
       .then(url => {
-        console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
           cy.validateUrlResponse(url, 302, cookie.value)
         });
@@ -73,7 +69,6 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
     cy.get('.recruiter-images-container').parent()
       .invoke('attr', 'href')
       .then(url => {
-        console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
           cy.validateUrlResponse(url, 200, cookie.value)
         });
