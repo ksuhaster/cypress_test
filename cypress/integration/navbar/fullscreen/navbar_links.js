@@ -1,6 +1,5 @@
 describe('Tests that navbar links are valid, if the user logged in', () => {
   before(() => {
-    cy.visit(Cypress.env('LoginPage'));
     cy.login();
     const navButtonsLinks = [
       Cypress.config().baseUrl,
@@ -43,7 +42,7 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
       .then(url => {
         console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
-          cy.getResponse(url, 302, cookie.value)
+          cy.validateUrlResponse(url, 302, cookie.value)
         });
     });
   })
@@ -54,7 +53,7 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
       .then(url => {
         console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
-          cy.getResponse(url, 200, cookie.value)
+          cy.validateUrlResponse(url, 200, cookie.value)
         });
       });
   })
@@ -65,7 +64,7 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
       .then(url => {
         console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
-          cy.getResponse(url, 302, cookie.value)
+          cy.validateUrlResponse(url, 302, cookie.value)
         });
     });
   })
@@ -76,7 +75,7 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
       .then(url => {
         console.log(url)
         cy.getCookie('currentBtnLink').then(cookie => {
-          cy.getResponse(url, 200, cookie.value)
+          cy.validateUrlResponse(url, 200, cookie.value)
         });
     });
   })
