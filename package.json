@@ -1,5 +1,11 @@
 {
+  "name": "djinni_test",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:vladhutsal/cypress_test.git",
+  "author": "vlad <vl.hutsal@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
-    "cypress": "^6.1.0"
+    "cypress": "6.1.0"
   }
 }
