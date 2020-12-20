@@ -10,13 +10,12 @@ describe('Test first inbox entry', () => {
   it('checks if picture exists and not empty', () => {
     cy.get('@firstMsg').within(() => {
       cy.get('.media > .media-left').within(() => {
-        cy.get('user-picture[picture=""]').should('not.exist');
-        cy.get('user-picture[name=""]').should('not.exist');
+        cy.checkPictureNotEmpty();
       });
     });
   })
 
-  it('checks if info exists and not empty', () => {
+  it('checks if info block exists and not empty', () => {
     cy.get('@firstMsg').within(() => {
       cy.get('.media-body').find('span').each(el => {
         expect(el).not.to.be.empty;
