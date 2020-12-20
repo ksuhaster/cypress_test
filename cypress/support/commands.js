@@ -11,14 +11,15 @@ Cypress.Commands.add('getFirstMsg', () => {
 })
 
 
-Cypress.Commands.add('validateUrlResponse', (url, expectedStatus, expectedUrl) => {
+Cypress.Commands.add('validateUrlResponse', (requestUrl, expectedStatus, expectedRespUrl) => {
+  const pattern = new RegExp(expectedRespUrl);
   cy.request({
-    url: url,
+    url: requestUrl,
     followRedirect: false
   })
     .then((response) => {
       expect(response.status).to.eq(expectedStatus)
-      expect(response.allRequestResponses[0]['Request URL']).to.eq(expectedUrl)
+      expect(response.allRequestResponses[0]['Request URL']).to.match(pattern)
     });
 })
 
