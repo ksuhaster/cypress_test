@@ -1,5 +1,6 @@
 info and overal questions:
 - there is risk of changing DOM elements atributes so that will crash a test
+    - recruiters test > open jobs > check Відкриті вакансії > nth-child(1)
 
 test structure:
 - how to divide tests? fullscreen/collapse, auth/non-auth
@@ -13,6 +14,7 @@ overall improvements:
 
 recruiters:
 - improve url pattern in
+- add check if all company names are the same
 
 login:
 - check errors
