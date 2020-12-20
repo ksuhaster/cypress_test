@@ -11,14 +11,19 @@ Cypress.Commands.add('getFirstMsg', () => {
 })
 
 
-Cypress.Commands.add('getResponse', (url, expectedStatus, expectedUrl) => {
+Cypress.Commands.add('validateUrlResponse', (url, expectedStatus, expectedUrl) => {
   cy.request({
     url: url,
     followRedirect: false
   })
     .then((response) => {
-      console.log(expectedUrl)
       expect(response.status).to.eq(expectedStatus)
       expect(response.allRequestResponses[0]['Request URL']).to.eq(expectedUrl)
     });
+})
+
+
+Cypress.Commands.add('checkPictureNotEmpty', () => {
+  cy.get('user-picture[picture=""]').should('not.exist');
+  cy.get('user-picture[name=""]').should('not.exist');
 })
