@@ -1,6 +1,6 @@
 describe('Category check', () => {
   before(() => {
-    cy.visit(Cypress.env('Jobs2'));
+    cy.visit(Cypress.env('Jobs2Page'));
     cy.wait(300);
     cy.get('.first > :nth-child(1) > section.svelte-1b8ond5 > .tags-wrapper > ul.svelte-6mlqg1')
       .contains('Python')
