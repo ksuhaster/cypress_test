@@ -13,9 +13,7 @@ describe('Tests that navbar links are valid, if the user logged in', () => {
   })
 
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('sessionid');
-    Cypress.Cookies.preserveOnce('testsCounter');
-    Cypress.Cookies.preserveOnce('navButtonsLinks');
+    Cypress.Cookies.preserveOnce('testsCounter', 'navButtonsLinks', 'sessionid');
 
     cy.getCookie('testsCounter').then(currentCounter => {
       const count = parseInt(currentCounter.value);
