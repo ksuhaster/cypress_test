@@ -1,10 +1,14 @@
-describe('Test first inbox entry', () => {
+describe('Test first inbox entry [Inbox page]', () => {
   before(() => {
     cy.login();
   })
 
   beforeEach(() => {
     cy.getFirstMsg().as('firstMsg');
+  })
+
+  after(() => {
+    cy.logout();
   })
 
   it('checks if picture exists and not empty', () => {
@@ -37,7 +41,7 @@ describe('Test first inbox entry', () => {
 })
 
 
-describe('Test first inbox entry dropdown menu', () => {
+describe('Test first inbox entry dropdown menu [Inbox page]', () => {
   beforeEach(() => {
     cy.getFirstMsg()
       .within(() => {

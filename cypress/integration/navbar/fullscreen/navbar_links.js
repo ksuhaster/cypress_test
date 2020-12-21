@@ -1,77 +1,41 @@
-describe('Tests that navbar links are valid, if the user logged in', () => {
+describe('Tests navbar if links are valid [NavBar, Logged in]', () => {
   before(() => {
     cy.login();
-    const navButtonsLinks = [
-      Cypress.config().baseUrl,
-      Cypress.env('InboxPage'),
-      Cypress.env('JobsPage'),
-      Cypress.env('UserProfilePage')
-    ];
+  })
 
-    cy.setCookie('navButtonsLinks', `${navButtonsLinks}`);
-    cy.setCookie('testsCounter', '0');
+  after(() => {
+    cy.logout();
   })
 
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('testsCounter', 'navButtonsLinks', 'sessionid');
-
-    cy.getCookie('testsCounter').then(currentCounter => {
-      const count = parseInt(currentCounter.value);
-      cy.getCookie('navButtonsLinks').then(buttons => {
-        const currentBtn = buttons.value.split(',')[count];
-        console.log(currentBtn)
-        cy.setCookie('currentBtnLink', `${currentBtn}`)
-      });
-    })
+    Cypress.Cookies.preserveOnce('sessionid');
   })
 
-  afterEach(() => {
-    cy.getCookie('testsCounter').then(prevCounter => {
-      const count = parseInt(prevCounter.value) + 1;
-      cy.setCookie('testsCounter', `${count}`);
-    })
-  })
-
-
-  it('check if Djinni button is valid', () => {
+  it('validate Djinni button', () => {
     cy.get('.navbar-brand')
       .invoke('attr', 'href')
-      .then(url => {
-        cy.getCookie('currentBtnLink').then(cookie => {
-          cy.validateUrlResponse(url, 302, cookie.value)
-        });
-    });
-  })
-
-  it('check if Inbox button is valid', () => {
-    cy.get('.collapse > :nth-child(1) > :nth-child(1) > a')
-      .invoke('attr', 'href')
-      .then(url => {
-        cy.getCookie('currentBtnLink').then(cookie => {
-          cy.validateUrlResponse(url, 200, cookie.value)
-        });
+      .then(btnUrl => {
+        const expectedUrl = Cypress.config().baseUrl;
+        cy.validateUrlResponse(btnUrl, expectedUrl);
       });
   })
 
-  it('check if Jobs2 button is valid', () => {
-    cy.get(':nth-child(1) > :nth-child(2) > a')
-      .invoke('attr', 'href')
-      .then(url => {
-        cy.getCookie('currentBtnLink').then(cookie => {
-          cy.validateUrlResponse(url, 302, cookie.value)
-        });
+  it('validate Inbox and Jobs buttons', () => {
+    const expectedUrls = [
+      Cypress.env('InboxPage'),
+      Cypress.env('JobsPage')
+    ]
+    cy.get('.collapse > :nth-child(1)').then(ul => {
+      cy.validateNavElments(ul, expectedUrls)
     });
   })
 
-  it('check if User profile button is valid', () => {
+  it('validate User profile button', () => {
+    const expectedUrl = Cypress.env('UserProfilePage');
     cy.get('.recruiter-images-container').parent()
       .invoke('attr', 'href')
-      .then(url => {
-        cy.getCookie('currentBtnLink').then(cookie => {
-          cy.validateUrlResponse(url, 200, cookie.value)
-        });
-    });
+      .then(btnUrl => {
+        cy.validateUrlResponse(btnUrl, expectedUrl)
+      });
   })
-
-
 })

@@ -1,4 +1,4 @@
-describe('Test company open jobs page', () => {
+describe('Test company open jobs page [Company jobs page]', () => {
   before(() => {
     cy.login();
     cy.visit('https://djinni.co/r/67295-recruiter-at-sysgears/');
@@ -31,6 +31,10 @@ describe('Test company open jobs page', () => {
     );
     cy.get('.jobs-list-wrapper')
       .as('jobs-wrapper');
+  })
+
+  after(() => {
+    cy.logout();
   })
 
   it('check if jobs count is equal to expected', () => {

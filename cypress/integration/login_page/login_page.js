@@ -1,6 +1,10 @@
-describe('Login page tests', () => {
+describe('Tests login page and logging in [Login page]', () => {
   before(() => {
     cy.visit(Cypress.env('LoginPage'))
+  })
+
+  after(() => {
+    cy.logout();
   })
 
   it('checks if there are social buttons', () => {
@@ -23,7 +27,7 @@ describe('Login page tests', () => {
       .and('match', urlPattern)
   })
 
-  it('checks login and redirect to /inbox/', () => {
+  it('checks logging in and validate redirect to /inbox/', () => {
     cy.reload();
     cy.get('#email').type('vl.hutsal@gmail.com');
     cy.get('#password').type('easytobreakinparol{enter}');

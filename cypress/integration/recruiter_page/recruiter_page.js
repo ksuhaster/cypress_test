@@ -1,5 +1,5 @@
 // ------------ Visit Recruiters page, check recruiters info block and picture
-describe('Recruiters Info block test', () => {
+describe('Test "Recruiters info" block [Recruiters page]', () => {
   before(() => {
     cy.login();
     cy.getFirstMsg().as('firstMsg');
@@ -9,7 +9,11 @@ describe('Recruiters Info block test', () => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
 
-  it('cheks if link redirects to valid recruiters page', () => {
+  after(() => {
+    cy.logout();
+  })
+
+  it('cheks if inbox page link redirects to valid recruiters page', () => {
     cy.get('@firstMsg').within(() => {
       cy.get('.media > .media-body > .recruiter-name > a')
         .click()
@@ -22,7 +26,7 @@ describe('Recruiters Info block test', () => {
     });
   })
 
-  it('checks picture exists and not empty', () => {
+  it('checks if recruter picture exists and not empty', () => {
     cy.get('.page-header-userpic').within(() => {
       cy.checkPictureNotEmpty();
     });
@@ -33,15 +37,13 @@ describe('Recruiters Info block test', () => {
   })
 
   it('checks that recruiters position exists and leads to the company page', () => {
-    const urlPattern = (/\/jobs\/company.+/);
-    cy.get('.recruiter-headline-lg').should('not.be.empty')
-      .find('a').should('has.attr', 'href')
-      .and('match', urlPattern);  
-    // to check if link is valid
-    // cy.get('.recruiter-headline-lg').should('not.be.empty')
-    //   .find('a').then(a => {
-    //     const btnUrl = a[0]['href'];
-    //     cy.validateUrlResponse(btnUrl, 302, btnUrl)    
+    const expectedPattern = (/\/jobs\/company.+/);
+    cy.get('.recruiter-headline-lg')
+      .should('not.be.empty')
+      .find('a')
+      .then(a => {
+        const btnUrl = a[0]['href'];
+        cy.validateUrlResponse(btnUrl, expectedPattern)    
   })
 
   it('checks "on Djinni since.." and "last visited"', () => {
@@ -61,20 +63,20 @@ describe('Recruiters Info block test', () => {
 
 
 // ------------ Check Open Jobs block
-describe('Test the open company jobs block', () => { 
+describe('Test "Opened company jobs" block [Recruiters page]', () => { 
     beforeEach(() => {
       Cypress.Cookies.preserveOnce('sessionid');
       cy.get('.col-sm-8 > :nth-child(1)').as('openJobs');
     })
 
-  it('checks if block has the "Відкриті вакансії" name', () => {
+  it('checks if block is named as "Відкриті вакансії"', () => {
     cy.get('@openJobs')
       .children('h4').then((h4) => {
         expect(h4).to.have.text('Відкриті вакансії');
       })
   })
 
-  it('checks if links exists and are valid', () => {
+  it('checks if links exists and are matches expected pattern', () => {
     const urlPattern = (/\/jobs\/\d+[-\w+]+\/?$/);
     cy.get('@openJobs').find('.list-common')
       .children()
@@ -85,18 +87,20 @@ describe('Test the open company jobs block', () => {
       });
   })
 
-  it('checks if all company jobs buttons are valid', () => {
+  it('checks if all opened jobs links are valid', () => {
     const urlPattern = (/\/jobs\/company.+/);
-    cy.get('@openJobs').find('.light-button').then(btn => {
-      const allJobsUrl = btn[0]['href'];
-      cy.validateUrlResponse(allJobsUrl, 302, urlPattern)
-    });
+    cy.get('@openJobs')
+      .find('.light-button')
+      .then(btn => {
+        const btnUrl = btn[0]['href'];
+        cy.validateUrlResponse(btnUrl, urlPattern)
+      });
   })
 })
 
 
 // ------------ Check dialog button, company description and additional links
-describe('Description block, start dialog button and additional buttons test', () => { 
+describe('Test "Description block", dialog and additional buttons [Recruiters page]', () => { 
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
