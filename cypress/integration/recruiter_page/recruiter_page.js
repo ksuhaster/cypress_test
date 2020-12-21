@@ -32,6 +32,18 @@ describe('Recruiters Info block test', () => {
     cy.get('h1').should('exist');
   })
 
+  it('checks that recruiters position exists and leads to the company page', () => {
+    const urlPattern = (/\/jobs\/company.+/);
+    cy.get('.recruiter-headline-lg').should('not.be.empty')
+      .find('a').should('has.attr', 'href')
+      .and('match', urlPattern);  
+    // to check if link is valid
+    // cy.get('.recruiter-headline-lg').should('not.be.empty')
+    //   .find('a').then(a => {
+    //     const btnUrl = a[0]['href'];
+    //     cy.validateUrlResponse(btnUrl, 302, btnUrl)    
+  })
+
   it('checks "on Djinni since.." and "last visited"', () => {
     cy.get('.profile-whois > :nth-child(4) > tbody').as('tbody')
       .children('tr')
@@ -45,24 +57,18 @@ describe('Recruiters Info block test', () => {
 
   })
 
-  it('checks that recruiters position exists and leads to the company page', () => {
-    const urlPattern = (/\/jobs\/company.+/);
-    cy.get('.recruiter-headline-lg').should('not.be.empty')
-      .find('a').should('has.attr', 'href')
-      .and('match', urlPattern);
-  })
 })
 
 
 // ------------ Check Open Jobs block
-describe('Open Jobs block and internal links test', () => { 
+describe('Test the open company jobs block', () => { 
     beforeEach(() => {
       Cypress.Cookies.preserveOnce('sessionid');
       cy.get('.col-sm-8 > :nth-child(1)').as('openJobs');
     })
 
-  it('checks if block is not empty and has the "Відкриті вакансії" name', () => {
-    cy.get('@openJobs').should('not.be.empty')
+  it('checks if block has the "Відкриті вакансії" name', () => {
+    cy.get('@openJobs')
       .children('h4').then((h4) => {
         expect(h4).to.have.text('Відкриті вакансії');
       })
@@ -82,8 +88,8 @@ describe('Open Jobs block and internal links test', () => {
   it('checks if all company jobs buttons are valid', () => {
     const urlPattern = (/\/jobs\/company.+/);
     cy.get('@openJobs').find('.light-button').then(btn => {
-      const allCompanyJobsLink = btn[0]['href'];
-      cy.validateUrlResponse(allCompanyJobsLink, 302, urlPattern)
+      const allJobsUrl = btn[0]['href'];
+      cy.validateUrlResponse(allJobsUrl, 302, urlPattern)
     });
   })
 })
