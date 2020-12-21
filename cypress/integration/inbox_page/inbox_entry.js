@@ -8,7 +8,8 @@ describe('Test first inbox entry', () => {
   })
 
   it('checks if picture exists and not empty', () => {
-    cy.get('@firstMsg').find('.media > .media-left')
+    cy.get('@firstMsg')
+      .find('.media > .media-left')
       .within(() => {
         cy.checkPictureNotEmpty();
 
@@ -24,18 +25,12 @@ describe('Test first inbox entry', () => {
     });
   })
 
-  // it('checks if info block exists and not empty', () => {
-  //   cy.get('@firstMsg').within(() => {
-  //     cy.get('.media-body').find('span').each(el => {
-  //       expect(el).not.to.be.empty;
-  //     });
-  //   });
-  // })
-
   it('checks if message block exists and not empty', () => {
-    cy.get('@firstMsg').within(() => {
-      cy.get('.col-sm-6 > .message-text > a').then(el => {
-        expect(el).not.to.be.empty;
+    cy.get('@firstMsg')
+      .within(() => {
+      cy.get('.col-sm-6 > .message-text > a')
+        .then(el => {
+          expect(el).not.to.be.empty;
       });
     });
   })
@@ -44,7 +39,8 @@ describe('Test first inbox entry', () => {
 
 describe('Test first inbox entry dropdown menu', () => {
   beforeEach(() => {
-    cy.getFirstMsg().within(() => {
+    cy.getFirstMsg()
+      .within(() => {
       cy.get('.col-sm-2 > .message-btn-wrapper > .btn-group')
         .as('btn-group');
     });
