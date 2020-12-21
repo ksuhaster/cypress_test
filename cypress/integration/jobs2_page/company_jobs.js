@@ -39,12 +39,10 @@ describe('Test company open jobs page', () => {
       cy.get('@jobs-wrapper')
         .children('div')
         .should('have.length', expJobsCount)
-    })
-    
-    
+    });
   })
 
-  it('check if all jobs belongs to expected company ', () => {
+  it('check if all jobs belongs to expected company (without scroll)', () => {
     cy.getCookie('compName').then(compNameCookie => {
       const expCompName = compNameCookie.value;
       cy.get('@jobs-wrapper')
@@ -53,7 +51,7 @@ describe('Test company open jobs page', () => {
             .then(span => {
               const nbsp = String.fromCharCode(160);
               const factCompName = span[0]['innerText'].split(nbsp)[1].toLowerCase();
-              expect(factCompName).to.be.eq(expCompName)
+              expect(factCompName).to.be.eq(expCompName);
             })
         })
 
