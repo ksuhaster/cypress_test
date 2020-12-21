@@ -14,14 +14,17 @@ describe('Login page tests', () => {
   })
 
   it('checks Register and Remember password buttons', () => {
+    const urlPattern = new RegExp(/\/remind\?email=&.+/);
     cy.contains('Реєстрація')
       .should('have.attr', 'href', '/signup')
 
     cy.contains('Забули пароль?')
-      .should('have.attr', 'href', '\/remind\?email=&.+')
+      .should('have.attr', 'href')
+      .and('match', urlPattern)
   })
 
   it('checks login and redirect to /inbox/', () => {
+    cy.reload();
     cy.get('#email').type('vl.hutsal@gmail.com');
     cy.get('#password').type('easytobreakinparol{enter}');
     cy.url().should('eq', Cypress.env('InboxPage'));
