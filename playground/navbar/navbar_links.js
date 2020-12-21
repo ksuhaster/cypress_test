@@ -1,9 +1,3 @@
-// How to follow DRY here?
-
-
-
-
-
 describe('Tests that navbar links are valid, if the user logged in', () => {
   before(() => {
     cy.visit(Cypress.env('LoginPage'));
