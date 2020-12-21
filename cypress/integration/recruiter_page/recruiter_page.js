@@ -32,6 +32,19 @@ describe('Recruiters Info block test', () => {
     cy.get('h1').should('exist');
   })
 
+  it('checks "on Djinni since.." and "last visited"', () => {
+    cy.get('.profile-whois > :nth-child(4) > tbody').as('tbody')
+      .children('tr')
+      .should('have.length', '2')
+
+    cy.get('@tbody').find(':nth-child(1)')
+      .should('include.text', 'На Джині з')
+    
+    cy.get('@tbody').find(':nth-child(2)')
+    .should('include.text', 'Активність на сайті')
+
+  })
+
   it('checks that recruiters position exists and leads to the company page', () => {
     const urlPattern = (/\/jobs\/company.+/);
     cy.get('.recruiter-headline-lg').should('not.be.empty')
@@ -97,8 +110,9 @@ describe('Description block, start dialog button and additional buttons test', (
 
   it('check if description block exists and not empty', () => {
     cy.get('.col-sm-8 > :nth-child(3)')
-      .find('h4').should('exist')
-      .and('not.to.be.empty')
+      .should('not.be.empty')
+      .find('h4').should('not.be.empty')
+
   })
 
 })
