@@ -1,4 +1,4 @@
-describe('Category check', () => {
+describe('Tests Python category to show valid results [Jobs2 page]', () => {
   before(() => {
     cy.visit(Cypress.env('Jobs2Page'));
     cy.wait(300);
@@ -17,8 +17,7 @@ describe('Category check', () => {
   })
 
   it('checks that there are at least 50% of jobs that fits', () => {
-    const passWords = 'python|machine learning|data science'
-    const regexPattern = new RegExp(passWords, 'i');
+    const passWords = (/python|machine learning|data science/i)
     let total = 0;
     let python = 0;
 

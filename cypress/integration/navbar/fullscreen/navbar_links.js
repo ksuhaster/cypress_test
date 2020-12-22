@@ -1,11 +1,11 @@
-describe('Tests navbar if links are valid [NavBar, Logged in]', () => {
+describe('Tests navbar if links are valid [Navbar main]', () => {
   before(() => {
     cy.login();
   })
 
-  after(() => {
-    cy.logout();
-  })
+  // after(() => {
+  //   cy.logout();
+  // })
 
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
@@ -13,8 +13,8 @@ describe('Tests navbar if links are valid [NavBar, Logged in]', () => {
 
   it('validate Djinni button', () => {
     cy.get('.navbar-brand')
-      .invoke('attr', 'href')
-      .then(btnUrl => {
+      .then(a => {
+        const btnUrl = a[0]['href'];
         const expectedUrl = Cypress.config().baseUrl;
         cy.validateUrlResponse(btnUrl, expectedUrl);
       });
@@ -24,17 +24,18 @@ describe('Tests navbar if links are valid [NavBar, Logged in]', () => {
     const expectedUrls = [
       Cypress.env('InboxPage'),
       Cypress.env('JobsPage')
-    ]
-    cy.get('.collapse > :nth-child(1)').then(ul => {
-      cy.validateNavElments(ul, expectedUrls)
+    ];
+    cy.get('.collapse > :nth-child(1)')
+      .then(ul => {
+        cy.validateNavElments(ul, expectedUrls)
     });
   })
 
   it('validate User profile button', () => {
     const expectedUrl = Cypress.env('UserProfilePage');
     cy.get('.recruiter-images-container').parent()
-      .invoke('attr', 'href')
-      .then(btnUrl => {
+      .then(a => {
+        const btnUrl = a[0]['href'];
         cy.validateUrlResponse(btnUrl, expectedUrl)
       });
   })

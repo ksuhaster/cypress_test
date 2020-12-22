@@ -7,9 +7,9 @@ describe('Test first inbox entry [Inbox page]', () => {
     cy.getFirstMsg().as('firstMsg');
   })
 
-  after(() => {
-    cy.logout();
-  })
+  // after(() => {
+  //   cy.logout();
+  // })
 
   it('checks if picture exists and not empty', () => {
     cy.get('@firstMsg')
@@ -65,7 +65,7 @@ describe('Test first inbox entry dropdown menu [Inbox page]', () => {
   })
 
   it('checks if dropdown buttons has links', () => {
-    const urlPatern = new RegExp('\/my\/.+')
+    const urlPatern = (/\/my\/.+/)
     cy.get('@btn-group')
       .children('ul')
       .within(() => {

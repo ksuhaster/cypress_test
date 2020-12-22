@@ -33,9 +33,9 @@ describe('Test company open jobs page [Company jobs page]', () => {
       .as('jobs-wrapper');
   })
 
-  after(() => {
-    cy.logout();
-  })
+  // after(() => {
+  //   cy.logout();
+  // })
 
   it('check if jobs count is equal to expected', () => {
     cy.getCookie('expJobsC').then(countCookie => {

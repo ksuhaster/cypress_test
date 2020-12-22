@@ -9,9 +9,9 @@ describe('Test "Recruiters info" block [Recruiters page]', () => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
 
-  after(() => {
-    cy.logout();
-  })
+  // after(() => {
+  //   cy.logout();
+  // })
 
   it('cheks if inbox page link redirects to valid recruiters page', () => {
     cy.get('@firstMsg').within(() => {
@@ -58,7 +58,7 @@ describe('Test "Recruiters info" block [Recruiters page]', () => {
     .should('include.text', 'Активність на сайті')
 
   })
-
+  })
 })
 
 
@@ -71,8 +71,9 @@ describe('Test "Opened company jobs" block [Recruiters page]', () => {
 
   it('checks if block is named as "Відкриті вакансії"', () => {
     cy.get('@openJobs')
-      .children('h4').then((h4) => {
-        expect(h4).to.have.text('Відкриті вакансії');
+      .children('h4')
+        .then((h4) => {
+          expect(h4).to.have.text('Відкриті вакансії');
       })
   })
 
@@ -92,8 +93,7 @@ describe('Test "Opened company jobs" block [Recruiters page]', () => {
     cy.get('@openJobs')
       .find('.light-button')
       .then(btn => {
-        const btnUrl = btn[0]['href'];
-        cy.validateUrlResponse(btnUrl, urlPattern)
+        cy.validateUrlResponse(btn[0]['href'], urlPattern)
       });
   })
 })
@@ -106,15 +106,17 @@ describe('Test "Description block", dialog and additional buttons [Recruiters pa
   })
 
   it('validate dialog button text', () => {
-    cy.get('.col-sm-8 > .row > .col-sm-10 > .btn').then(a => {
+    cy.get('.col-sm-8 > .row > .col-sm-10 > .btn')
+      .then(a => {
       expect(a).to.include.text('Відкрити діалог')
     });
   })
 
   it('validate dialog button link', () => {
     const urlPattern = (/^https:\/\/djinni\.co\/my\/inbox\/\d+\/?/);
-    cy.get('.col-sm-8 > .row > .col-sm-10 > .btn').then(a => {
-      cy.validateUrlResponse(a[0]['href'], 200, urlPattern);
+    cy.get('.col-sm-8 > .row > .col-sm-10 > .btn')
+      .then(a => {
+        cy.validateUrlResponse(a[0]['href'], urlPattern);
     });
   })
 

@@ -3,9 +3,9 @@ describe('Tests login page and logging in [Login page]', () => {
     cy.visit(Cypress.env('LoginPage'))
   })
 
-  after(() => {
-    cy.logout();
-  })
+  // after(() => {
+  //   cy.logout();
+  // })
 
   it('checks if there are social buttons', () => {
     cy.get('.col-social-login')

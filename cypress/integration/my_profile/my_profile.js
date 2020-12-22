@@ -1,4 +1,4 @@
-describe('Tests my profile navbar', () => {
+describe('Tests user profile navbar [User profile page]', () => {
   before(() => {
     cy.login();
     cy.visit(Cypress.env('UserProfilePage'));
@@ -23,7 +23,7 @@ describe('Tests my profile navbar', () => {
 })
 
 
-describe('Tests first block', () => {
+describe('Tests first block from "Посада" to "Навички" [User profile page]', () => {
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
     cy.get('.page-header > .nav').as('navbar');
@@ -50,7 +50,7 @@ describe('Tests first block', () => {
       })
   })
 
-  it('checks that fields exists', () => {
+  it('checks that all fields exists', () => {
     cy.get(':nth-child(1) > .col-sm-10')
       .find('input')
       .should('length', 6)
