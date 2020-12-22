@@ -49,3 +49,14 @@ Cypress.Commands.add('validateNavElments', (Ul, expLinks) => {
       });
     });
 })
+
+
+Cypress.Commands.add('validateUserPageFields', (blockDiv, expecFieldNames) => {
+  cy.wrap(blockDiv)
+    .children('div[class="form-group"]')
+    .each((fieldDiv, idx) => {
+      cy.wrap(fieldDiv)
+        .contains(expecFieldNames[idx], { matchCase: false })
+        .should('exist');
+    });
+})
