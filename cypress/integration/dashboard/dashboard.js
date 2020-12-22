@@ -1,4 +1,4 @@
-describe('[Navbar main] Tests navbar if links are valid', () => {
+describe('[Dashboard page] Tests dashboard is available', () => {
   before(() => {
     cy.login();
   })
@@ -7,7 +7,7 @@ describe('[Navbar main] Tests navbar if links are valid', () => {
     cy.clearCookies();
   })
 
-  it('validate Djinni button', () => {
+  it('validate that Djinni nav button redirects to dashboard', () => {
     cy.get('.navbar-brand')
       .then(a => {
         cy.visit(a[0]['href']);
