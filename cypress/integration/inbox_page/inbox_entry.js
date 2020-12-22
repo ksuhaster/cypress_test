@@ -1,15 +1,12 @@
-describe('Test first inbox entry [Inbox page]', () => {
+describe('[Inbox page] Test first inbox entry', () => {
   before(() => {
     cy.login();
   })
 
   beforeEach(() => {
+    Cypress.Cookies.preserveOnce('sessionid');
     cy.getFirstMsg().as('firstMsg');
   })
-
-  // after(() => {
-  //   cy.logout();
-  // })
 
   it('checks if picture exists and not empty', () => {
     cy.get('@firstMsg')
@@ -41,8 +38,9 @@ describe('Test first inbox entry [Inbox page]', () => {
 })
 
 
-describe('Test first inbox entry dropdown menu [Inbox page]', () => {
+describe('[Inbox page] Test first inbox entry dropdown menu', () => {
   beforeEach(() => {
+    Cypress.Cookies.preserveOnce('sessionid');
     cy.getFirstMsg()
       .within(() => {
       cy.get('.col-sm-2 > .message-btn-wrapper > .btn-group')
@@ -50,8 +48,12 @@ describe('Test first inbox entry dropdown menu [Inbox page]', () => {
     });
   })
 
+  after(() => {
+    cy.clearCookies();
+  })
+
   it('checks if dropdown is visible', () => {
-    cy.get('@btn-group').find('.btn').click();
+    cy.get('@btn-group').find('.btn').click({force: true});
     cy.get('@btn-group').find('ul').should('be.visible');
   })
 

@@ -1,12 +1,11 @@
-describe('Tests navbar if links are valid [Navbar main]', () => {
+describe('[Navbar main] Tests navbar if links are valid', () => {
   before(() => {
     cy.login();
   })
-
-  // after(() => {
-  //   cy.logout();
-  // })
-
+  
+  after(() => {
+    cy.clearCookies();
+  })
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
   })

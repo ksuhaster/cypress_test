@@ -1,5 +1,5 @@
 // ------------ Visit Recruiters page, check recruiters info block and picture
-describe('Test "Recruiters info" block [Recruiters page]', () => {
+describe('[Recruiters page] Test "Recruiters info" block', () => {
   before(() => {
     cy.login();
     cy.getFirstMsg().as('firstMsg');
@@ -8,10 +8,6 @@ describe('Test "Recruiters info" block [Recruiters page]', () => {
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
-
-  // after(() => {
-  //   cy.logout();
-  // })
 
   it('cheks if inbox page link redirects to valid recruiters page', () => {
     cy.get('@firstMsg').within(() => {
@@ -63,7 +59,7 @@ describe('Test "Recruiters info" block [Recruiters page]', () => {
 
 
 // ------------ Check Open Jobs block
-describe('Test "Opened company jobs" block [Recruiters page]', () => { 
+describe('[Recruiters page] Test "Opened company jobs" block', () => { 
     beforeEach(() => {
       Cypress.Cookies.preserveOnce('sessionid');
       cy.get('.col-sm-8 > :nth-child(1)').as('openJobs');
@@ -100,9 +96,13 @@ describe('Test "Opened company jobs" block [Recruiters page]', () => {
 
 
 // ------------ Check dialog button, company description and additional links
-describe('Test "Description block", dialog and additional buttons [Recruiters page]', () => { 
+describe('[Recruiters page] Test "Description block", dialog and additional buttons', () => { 
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
+  })
+
+  after(() => {
+    cy.clearCookies();
   })
 
   it('validate dialog button text', () => {

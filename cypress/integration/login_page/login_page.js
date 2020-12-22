@@ -1,11 +1,11 @@
-describe('Tests login page and logging in [Login page]', () => {
+describe('[Login page] Tests login page and logging in', () => {
   before(() => {
     cy.visit(Cypress.env('LoginPage'))
   })
-
-  // after(() => {
-  //   cy.logout();
-  // })
+  
+  after(() => {
+    cy.clearCookies();
+  })
 
   it('checks if there are social buttons', () => {
     cy.get('.col-social-login')
