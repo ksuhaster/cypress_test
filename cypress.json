@@ -21,6 +21,9 @@
             "https://djinni.co/my/subscriptions/",
             "https://djinni.co/my/stoplist/",
             "https://djinni.co/my/hires/"
-          ]
+        ],
+
+        "CompanyJobsPage":  "https://djinni.co/jobs2/?company_name=Synergy+Way",
+        "CompanyName":      "Synergy Way"
     }
 }
