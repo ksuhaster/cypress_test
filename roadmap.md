@@ -1,6 +1,10 @@
 info and overal questions:
-- there is risk of changing DOM elements atributes so that will crash a test
+- there is risk of changing DOM elements atributes so that will crash a test, need to change it
     - recruiters test > open jobs > check Відкриті вакансії > nth-child(1)
+- https://djinni.co/centrifuge/subscribe - what is this?
+
+issues:
+- Cypress not always resets the cookies betwen tests.
 
 test structure:
 - how to divide tests? fullscreen/collapse, auth/non-auth
