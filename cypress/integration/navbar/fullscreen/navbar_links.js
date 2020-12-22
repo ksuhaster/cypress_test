@@ -6,6 +6,7 @@ describe('[Navbar main] Tests navbar if links are valid', () => {
   after(() => {
     cy.clearCookies();
   })
+  
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
