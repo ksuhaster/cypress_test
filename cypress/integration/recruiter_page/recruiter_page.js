@@ -33,7 +33,7 @@ describe('[Recruiters page] Test "Recruiters info" block', () => {
   })
 
   it('checks that recruiters position exists and leads to the company page', () => {
-    const expectedPattern = (/\/jobs\/company.+/);
+    const expectedPattern = (/^https:\/\/djinni\.co\/jobs\/company.+/);
     cy.get('.recruiter-headline-lg')
       .should('not.be.empty')
       .find('a')
@@ -74,22 +74,23 @@ describe('[Recruiters page] Test "Opened company jobs" block', () => {
   })
 
   it('checks if links exists and are matches expected pattern', () => {
-    const urlPattern = (/\/jobs\/\d+[-\w+]+\/?$/);
+    const urlPattern = (/^https:\/\/djinni\.co\/jobs\/\d+[-\w+]+\/?$/);
     cy.get('@openJobs').find('.list-common')
       .children()
       .each(li => {
         cy.wrap(li).find('a')
-          .should('have.attr', 'href')
-          .and('match', urlPattern);
+          .then(a => {
+            cy.validateUrlResponse(a[0]['href'], urlPattern)
+          })
       });
   })
 
   it('checks if all opened jobs links are valid', () => {
-    const urlPattern = (/\/jobs\/company.+/);
+    const urlPattern = (/^https:\/\/djinni\.co\/jobs\/company-.+/);
     cy.get('@openJobs')
       .find('.light-button')
       .then(btn => {
-        cy.validateUrlResponse(btn[0]['href'], urlPattern)
+        cy.validateUrlResponse(btn[0]['href'], urlPattern);
       });
   })
 })
