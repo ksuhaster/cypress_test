@@ -1,6 +1,7 @@
 describe('[Inbox page] Test first inbox entry', () => {
   before(() => {
-    cy.login();
+    cy.noUiLogin();
+    cy.visit(Cypress.config('urls').InboxPage);
   })
 
   beforeEach(() => {
@@ -53,7 +54,7 @@ describe('[Inbox page] Test first inbox entry dropdown menu', () => {
   })
 
   it('checks if dropdown is visible', () => {
-    cy.get('@btn-group').find('.btn').click({force: true});
+    cy.get('@btn-group').find('.btn').click();
     cy.get('@btn-group').find('ul').should('be.visible');
   })
 

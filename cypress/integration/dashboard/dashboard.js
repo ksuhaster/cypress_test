@@ -1,6 +1,7 @@
 describe('[Dashboard page] Tests dashboard is available', () => {
   before(() => {
-    cy.login();
+    cy.noUiLogin();
+    cy.visit(Cypress.config('urls').InboxPage);
   })
 
   after(() => {
@@ -11,7 +12,8 @@ describe('[Dashboard page] Tests dashboard is available', () => {
     cy.get('.navbar-brand')
       .then(a => {
         cy.visit(a[0]['href']);
-        cy.url().should('eq', Cypress.env('DashboardPage'))
+        cy.url()
+          .should('eq', Cypress.config('urls').DashboardPage)
       });
   })
 })

@@ -1,7 +1,7 @@
 describe('[User profile page] Tests user profile navbar and iputs count', () => {
   before(() => {
-    cy.login();
-    cy.visit(Cypress.env('UserProfilePage'));
+    cy.noUiLogin();
+    cy.visit(Cypress.config('urls').UserProfilePage);
   })
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('[User profile page] Tests user profile navbar and iputs count', () => 
   })
 
   it('validate navbar links', () => {
-    const expectedUrls = Cypress.env('UserProfileNavLinks');
+    const expectedUrls = Cypress.config('urls').UserProfileNavLinks;
     cy.get('.page-header > .nav').then(ul => {
       cy.validateNavElments(ul, expectedUrls);
     });

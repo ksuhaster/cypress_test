@@ -1,6 +1,6 @@
 describe('[Jobs2 page] Tests Python category to show valid results', () => {
   before(() => {
-    cy.visit(Cypress.env('Jobs2Page'));
+    cy.visit(Cypress.config('urls').Jobs2Page);
     cy.wait(1000);
     cy.get('.first > :nth-child(1) > section.svelte-1b8ond5 > .tags-wrapper > ul.svelte-6mlqg1')
       .contains('Python')
@@ -9,7 +9,7 @@ describe('[Jobs2 page] Tests Python category to show valid results', () => {
   })
 
   it('checks that Python category link is valid', () => {
-    cy.url().should('eq', Cypress.env('PythonDir'));
+    cy.url().should('eq', Cypress.config('urls').PythonDir);
   })
 
   it('checks that there are at least 10 results on Python category', () => {
