@@ -1,8 +1,25 @@
-Cypress.Commands.add('login', () => {
-  cy.visit(Cypress.config('urls').LoginPage)
-  cy.get('#email').type('vl.hutsal@gmail.com ')
-  cy.get('#password').type('easytobreakinparol{enter}')
-  cy.url().should('eq', Cypress.config('urls').InboxPage)
+
+Cypress.Commands.add('noUiLogin', () => {
+  cy.request('GET', Cypress.config('urls').LoginPage)
+    .its('body')
+    .then(body => {
+      const html = Cypress.$(body)
+      const inputCsrf = html.find('input[name=csrfmiddlewaretoken]').val()
+      cy.request({
+        url: 'https://djinni.co/login?from=frontpage_main',
+        method: 'POST',
+        form: true,
+        headers: {
+          'X-CSRFToken': inputCsrf,
+          referer: 'https://djinni.co/login'
+        },
+        body: {
+          email: '',
+          password: '',
+          csrfmiddlewaretoken: inputCsrf
+        }
+      });
+    });
 })
 
 
@@ -58,28 +75,5 @@ Cypress.Commands.add('validateUserPageFields', (blockDiv, expecFieldNames) => {
       cy.wrap(fieldDiv)
         .contains(expecFieldNames[idx], { matchCase: false })
         .should('exist');
-    });
-})
-
-Cypress.Commands.add('noUiLogin', () => {
-  cy.request('GET', Cypress.config('urls').LoginPage)
-    .its('body')
-    .then(body => {
-      const html = Cypress.$(body)
-      const inputCsrf = html.find('input[name=csrfmiddlewaretoken]').val()
-      cy.request({
-        url: 'https://djinni.co/login?from=frontpage_main',
-        method: 'POST',
-        form: true,
-        headers: {
-          'X-CSRFToken': inputCsrf,
-          referer: 'https://djinni.co/login'
-        },
-        body: {
-          email: 'vl.hutsal@gmail.com',
-          password: 'easytobreakinparol',
-          csrfmiddlewaretoken: inputCsrf
-        }
-      });
     });
 })
