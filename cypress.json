@@ -4,8 +4,7 @@
     "viewportWidth": 1920,
     "viewportHeight": 1080,
     "watchForFileChanges": false,
-
-    "env": {
+    "urls": {
         "DashboardPage":    "https://djinni.co/my/dashboard/",
         "LoginPage":        "https://djinni.co/login?from=frontpage_main",
         "InboxPage":        "https://djinni.co/my/inbox/",
@@ -21,9 +20,13 @@
             "https://djinni.co/my/subscriptions/",
             "https://djinni.co/my/stoplist/",
             "https://djinni.co/my/hires/"
-        ],
+        ]
+    },
 
-        "CompanyJobsPage":  "https://djinni.co/jobs2/?company_name=Synergy+Way",
-        "CompanyName":      "Synergy Way"
+    "env": {
+        "companyJobs": {
+            "CompanyJobsPage":  "https://djinni.co/jobs2/?company_name=Synergy+Way",
+            "CompanyName":      "Synergy Way"
+        }
     }
 }
