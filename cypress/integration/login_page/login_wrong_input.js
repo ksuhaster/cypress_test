@@ -23,6 +23,4 @@ describe('[Login page] Tests login behavior with wrong input', () => {
     cy.get('@password').clear();
   })
 
-  it('checks if there ')
-
 })
