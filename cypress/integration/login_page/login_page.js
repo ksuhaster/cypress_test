@@ -1,6 +1,6 @@
 describe('[Login page] Tests login page and logging in', () => {
   before(() => {
-    cy.visit(Cypress.env('LoginPage'))
+    cy.visit(Cypress.config('urls').LoginPage)
   })
   
   after(() => {
@@ -29,9 +29,9 @@ describe('[Login page] Tests login page and logging in', () => {
 
   it('checks logging in and validate redirect to /inbox/', () => {
     cy.reload();
-    cy.get('#email').type('vl.hutsal@gmail.com');
-    cy.get('#password').type('easytobreakinparol{enter}');
-    cy.url().should('eq', Cypress.env('InboxPage'));
+    cy.get('#email').type('');
+    cy.get('#password').type(' {enter}');
+    cy.url().should('eq', Cypress.config('urls').InboxPage);
   })
 
 })

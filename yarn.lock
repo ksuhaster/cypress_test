@@ -359,7 +359,7 @@ cross-spawn@^7.0.0:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-cypress@^6.1.0:
+cypress@6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.1.0.tgz#af2596cb110aa98eaf75fef3d8ab379ca0ff2413"
   integrity sha512-uQnSxRcZ6hkf9R5cr8KpRBTzN88QZwLIImbf5DWa5RIxH6o5Gpff58EcjiYhAR8/8p9SGv7O6SRygq4H+k0Qpw==

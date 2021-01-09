@@ -1,11 +1,13 @@
 describe('[Navbar main] Tests navbar if links are valid', () => {
   before(() => {
-    cy.login();
+    cy.noUiLogin();
+    cy.visit(Cypress.config('urls').DashboardPage)
   })
   
   after(() => {
     cy.clearCookies();
   })
+  
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('sessionid');
   })
@@ -21,8 +23,8 @@ describe('[Navbar main] Tests navbar if links are valid', () => {
 
   it('validate Inbox and Jobs buttons', () => {
     const expectedUrls = [
-      Cypress.env('InboxPage'),
-      Cypress.env('JobsPage')
+      Cypress.config('urls').InboxPage,
+      Cypress.config('urls').JobsPage
     ];
     cy.get('.collapse > :nth-child(1)')
       .then(ul => {
@@ -31,7 +33,7 @@ describe('[Navbar main] Tests navbar if links are valid', () => {
   })
 
   it('validate User profile button', () => {
-    const expectedUrl = Cypress.env('UserProfilePage');
+    const expectedUrl = Cypress.config('urls').UserProfilePage;
     cy.get('.recruiter-images-container').parent()
       .then(a => {
         const btnUrl = a[0]['href'];

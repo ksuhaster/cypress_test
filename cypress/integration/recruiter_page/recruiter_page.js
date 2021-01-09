@@ -1,7 +1,8 @@
 // ------------ Visit Recruiters page, check recruiters info block and picture
 describe('[Recruiters page] Test "Recruiters info" block', () => {
   before(() => {
-    cy.login();
+    cy.noUiLogin();
+    cy.visit(Cypress.config('urls').InboxPage)
     cy.getFirstMsg().as('firstMsg');
   })
 
@@ -33,13 +34,12 @@ describe('[Recruiters page] Test "Recruiters info" block', () => {
   })
 
   it('checks that recruiters position exists and leads to the company page', () => {
-    const expectedPattern = (/\/jobs\/company.+/);
+    const expectedPattern = (/^https:\/\/djinni\.co\/jobs\/company.+/);
     cy.get('.recruiter-headline-lg')
       .should('not.be.empty')
       .find('a')
       .then(a => {
-        const btnUrl = a[0]['href'];
-        cy.validateUrlResponse(btnUrl, expectedPattern)    
+        cy.validateUrlResponse(a[0]['href'], expectedPattern)    
   })
 
   it('checks "on Djinni since.." and "last visited"', () => {
@@ -74,22 +74,23 @@ describe('[Recruiters page] Test "Opened company jobs" block', () => {
   })
 
   it('checks if links exists and are matches expected pattern', () => {
-    const urlPattern = (/\/jobs\/\d+[-\w+]+\/?$/);
+    const urlPattern = (/^https:\/\/djinni\.co\/jobs\/\d+[-\w+]+\/?$/);
     cy.get('@openJobs').find('.list-common')
       .children()
       .each(li => {
         cy.wrap(li).find('a')
-          .should('have.attr', 'href')
-          .and('match', urlPattern);
+          .then(a => {
+            cy.validateUrlResponse(a[0]['href'], urlPattern)
+          })
       });
   })
 
   it('checks if all opened jobs links are valid', () => {
-    const urlPattern = (/\/jobs\/company.+/);
+    const urlPattern = (/^https:\/\/djinni\.co\/jobs\/company-.+/);
     cy.get('@openJobs')
       .find('.light-button')
       .then(btn => {
-        cy.validateUrlResponse(btn[0]['href'], urlPattern)
+        cy.validateUrlResponse(btn[0]['href'], urlPattern);
       });
   })
 })

@@ -1,10 +1,10 @@
 describe('[Company jobs page] Tests if link ', () => {
   before(() => {
-    cy.visit(Cypress.env('CompanyJobsPage'));
+    cy.visit(Cypress.env('companyJobs')['CompanyJobsPage']);
   });
 
   beforeEach(() => {
-    const expCompName = Cypress.env('CompanyName').toLowerCase();
+    const expCompName = Cypress.env('companyJobs')['CompanyName'].toLowerCase();
     cy.wrap(expCompName).as('expCompName');
   })
 
